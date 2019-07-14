@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "80f88ed98284f3a1aeba7611a028d933",
+    "revision": "b50fdee7eb6f5c2345df8980c393c2ce",
     "url": "/paradise/index.html"
   },
   {
-    "revision": "3dbbb1296dde4dec2b9f",
+    "revision": "ca91df761a99d0b50c6a",
     "url": "/paradise/static/css/main.204f3b5a.chunk.css"
   },
   {
-    "revision": "da1aa4ad3d00d7ddf4f1",
-    "url": "/paradise/static/js/2.f22fce10.chunk.js"
+    "revision": "7d78792e474f9c778c16",
+    "url": "/paradise/static/js/2.d2c5d5b8.chunk.js"
   },
   {
-    "revision": "3dbbb1296dde4dec2b9f",
-    "url": "/paradise/static/js/main.9570f3ac.chunk.js"
+    "revision": "ca91df761a99d0b50c6a",
+    "url": "/paradise/static/js/main.9dcd4a26.chunk.js"
   },
   {
     "revision": "2fffb55c2d4dd0447920",
