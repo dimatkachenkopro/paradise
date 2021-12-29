@@ -9,7 +9,6 @@ export default class RoomProvider extends Component {
     sortedRooms: [],
     featuredRooms: [],
     loading: true,
-    //
     type: "all",
     capacity: 1,
     price: 0,
@@ -21,45 +20,17 @@ export default class RoomProvider extends Component {
     pets: false
   };
 
-  // getData = async () => {
-  //   try {
-  //     let response = await Client.getEntries({
-  //       content_type: "beachResortRoom"
-  //     });
-  //     let rooms = this.formatData(response.items);
-
-  //     let featuredRooms = rooms.filter(room => room.featured === true);
-  //     //
-  //     let maxPrice = Math.max(...rooms.map(item => item.price));
-  //     let maxSize = Math.max(...rooms.map(item => item.size));
-  //     this.setState({
-  //       rooms,
-  //       featuredRooms,
-  //       sortedRooms: rooms,
-  //       loading: false,
-  //       //
-  //       price: maxPrice,
-  //       maxPrice,
-  //       maxSize
-  //     });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
   componentDidMount() {
-    // this.getData();
     let rooms = this.formatData(items);
-    let featuredRooms = rooms.filter(room => room.featured === true);
-    //
-    let maxPrice = Math.max(...rooms.map(item => item.price));
-    let maxSize = Math.max(...rooms.map(item => item.size));
+    let featuredRooms = rooms.filter(({ featured }) => featured === true);
+    let maxPrice = Math.max(...rooms.map(({ price }) => price));
+    let maxSize = Math.max(...rooms.map(({ size }) => size));
+
     this.setState({
       rooms,
       featuredRooms,
       sortedRooms: rooms,
       loading: false,
-      //
       price: maxPrice,
       maxPrice,
       maxSize
@@ -76,16 +47,17 @@ export default class RoomProvider extends Component {
     });
     return tempItems;
   }
+
   getRoom = slug => {
     let tempRooms = [...this.state.rooms];
-    const room = tempRooms.find(room => room.slug === slug);
-    return room;
+
+    return tempRooms.find(room => room.slug === slug);
   };
+
   handleChange = event => {
     const target = event.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
-    console.log(name, value);
 
     this.setState(
       {
@@ -94,17 +66,10 @@ export default class RoomProvider extends Component {
       this.filterRooms
     );
   };
+
   filterRooms = () => {
-    let {
-      rooms,
-      type,
-      capacity,
-      price,
-      minSize,
-      maxSize,
-      breakfast,
-      pets
-    } = this.state;
+    let { rooms, type, capacity, price, minSize, maxSize, breakfast, pets } =
+      this.state;
 
     let tempRooms = [...rooms];
     // transform values
@@ -137,6 +102,7 @@ export default class RoomProvider extends Component {
       sortedRooms: tempRooms
     });
   };
+
   render() {
     return (
       <RoomContext.Provider
