@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import items from "./data";
+import items from "../data";
 
 const RoomContext = React.createContext();
 
-export default class RoomProvider extends Component {
+const RoomConsumer = RoomContext.Consumer;
+
+class RoomProvider extends Component {
   state = {
     rooms: [],
     sortedRooms: [],
@@ -58,12 +60,12 @@ export default class RoomProvider extends Component {
     const target = event.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
-
+    console.log(name);
     this.setState(
       {
         [name]: value
       },
-      this.filterRooms
+      this.filterRooms(name)
     );
   };
 
@@ -117,16 +119,5 @@ export default class RoomProvider extends Component {
     );
   }
 }
-const RoomConsumer = RoomContext.Consumer;
 
 export { RoomProvider, RoomConsumer, RoomContext };
-
-export function withRoomConsumer(Component) {
-  return function ConsumerWrapper(props) {
-    return (
-      <RoomConsumer>
-        {value => <Component {...props} context={value} />}
-      </RoomConsumer>
-    );
-  };
-}

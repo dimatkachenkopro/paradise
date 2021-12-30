@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Title from "../components/Title";
+import Title from "../Title";
 import { FaCocktail, FaHiking, FaShuttleVan, FaBeer } from "react-icons/fa";
 
 export default class Services extends Component {
@@ -8,29 +8,26 @@ export default class Services extends Component {
       {
         icon: <FaCocktail />,
         title: "Free cocktails",
-        info:
-          "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum, incidunt!"
+        info: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum, incidunt!"
       },
       {
         icon: <FaHiking />,
         title: "Endless hiking",
-        info:
-          "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum, incidunt!"
+        info: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum, incidunt!"
       },
       {
         icon: <FaShuttleVan />,
         title: "Free shuttle",
-        info:
-          "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum, incidunt!"
+        info: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum, incidunt!"
       },
       {
         icon: <FaBeer />,
         title: "Free beer",
-        info:
-          "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum, incidunt!"
+        info: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum, incidunt!"
       }
     ]
   };
+
   render() {
     return (
       <section className="services">

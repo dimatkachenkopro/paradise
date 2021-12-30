@@ -1,9 +1,9 @@
 import React from "react";
 import { useContext } from "react";
-import { RoomContext } from "../contex";
-import Title from "../components/Title";
-import { getUnique } from "../utils/utils";
-import { PrimarySelect } from "./PrimarySelect";
+import { RoomContext } from "../../contex";
+import Title from "../Title";
+import { getUnique } from "../../utils";
+import { PrimarySelect } from "../PrimarySelect";
 
 const RoomFilter = ({ rooms }) => {
   const context = useContext(RoomContext);
@@ -20,23 +20,6 @@ const RoomFilter = ({ rooms }) => {
     pets
   } = context;
 
-  let types = getUnique(rooms, "type");
-
-  types = ["all", ...types];
-
-  types = types.map((item, index) => (
-    <option key={index} value={item}>
-      {item}
-    </option>
-  ));
-
-  let people = getUnique(rooms, "capacity");
-  people = people.map((item, index) => (
-    <option key={index} value={item}>
-      {item}
-    </option>
-  ));
-
   return (
     <section className="filter-container">
       <Title title="search rooms" />
@@ -45,13 +28,15 @@ const RoomFilter = ({ rooms }) => {
           titles="Room type"
           handleChange={handleChange}
           value={type}
-          options={types}
+          options={["all"].concat(...getUnique(rooms, "type"))}
+          id="type"
         />
         <PrimarySelect
           titles="Guests"
           handleChange={handleChange}
           value={capacity}
-          options={people}
+          options={getUnique(rooms, "capacity")}
+          id="capacity"
         />
         <div className="form-group">
           <label htmlFor="price">room price ${price}</label>
@@ -110,4 +95,5 @@ const RoomFilter = ({ rooms }) => {
     </section>
   );
 };
+
 export default RoomFilter;

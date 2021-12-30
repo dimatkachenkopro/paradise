@@ -1,8 +1,8 @@
 import React from "react";
-import RoomsFilter from "./RoomFilter";
-import RoomsList from "./RoomList";
-import { RoomConsumer } from "../contex";
-import Loading from "./Loading";
+import RoomsFilter from "../RoomFilter";
+import RoomsList from "../RoomList";
+import { RoomConsumer } from "../../contex";
+import Loading from "../Loading";
 
 export default function RoomContainer() {
   return (

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import defaultBcg from "../images/defaultBcg.jpeg";
+import defaultBcg from "../assets/images/defaultBcg.jpeg";
 import Banner from "../components/Banner";
 import { Link } from "react-router-dom";
 import { RoomContext } from "../contex";
