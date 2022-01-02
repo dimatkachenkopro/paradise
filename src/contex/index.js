@@ -65,44 +65,69 @@ class RoomProvider extends Component {
       {
         [name]: value
       },
-      this.filterRooms(name)
+      () => {
+        this.filterRooms(name);
+      }
     );
   };
 
-  filterRooms = () => {
-    let { rooms, type, capacity, price, minSize, maxSize, breakfast, pets } =
-      this.state;
+  filterRooms = name => {
+    let { rooms, type, capacity, breakfast, pets } = this.state;
 
     let tempRooms = [...rooms];
-    // transform values
-    // get capacity
-    capacity = parseInt(capacity);
-    price = parseInt(price);
-    // filter by type
+
     if (type !== "all") {
-      tempRooms = tempRooms.filter(room => room.type === type);
+      tempRooms = this.filterByType(tempRooms);
     }
-    // filter by capacity
-    if (capacity !== 1) {
-      tempRooms = tempRooms.filter(room => room.capacity >= capacity);
+
+    if (parseInt(capacity) !== 1) {
+      tempRooms = this.filterByCapacity(tempRooms);
     }
-    // filter by price
-    tempRooms = tempRooms.filter(room => room.price <= price);
-    //filter by size
-    tempRooms = tempRooms.filter(
-      room => room.size >= minSize && room.size <= maxSize
-    );
-    //filter by breakfast
+
+    tempRooms = this.filterByPrice(tempRooms);
+
+    tempRooms = this.filterBySize(tempRooms);
+
     if (breakfast) {
-      tempRooms = tempRooms.filter(room => room.breakfast === true);
+      tempRooms = this.filterByBreakfast(tempRooms);
     }
-    //filter by pets
+
     if (pets) {
-      tempRooms = tempRooms.filter(room => room.pets === true);
+      tempRooms = this.filterByPets(tempRooms);
     }
+
     this.setState({
+      ...this.state,
       sortedRooms: tempRooms
     });
+  };
+
+  filterByType = tempRooms => {
+    return tempRooms.filter(room => room.type === this.state.type);
+  };
+
+  filterByCapacity = tempRooms => {
+    return tempRooms.filter(
+      room => room.capacity >= parseInt(this.state.capacity)
+    );
+  };
+
+  filterByPrice = tempRooms => {
+    return tempRooms.filter(room => room.price <= parseInt(this.state.price));
+  };
+
+  filterBySize = tempRooms => {
+    return tempRooms.filter(
+      room => room.size >= this.state.minSize && room.size <= this.state.maxSize
+    );
+  };
+
+  filterByBreakfast = tempRooms => {
+    return tempRooms.filter(room => room.breakfast === true);
+  };
+
+  filterByPets = tempRooms => {
+    return tempRooms.filter(room => room.pets === true);
   };
 
   render() {
